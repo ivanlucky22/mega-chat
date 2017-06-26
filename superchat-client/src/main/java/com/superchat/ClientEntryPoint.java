@@ -1,6 +1,7 @@
 package com.superchat;
 
 import javax.sound.midi.Soundbank;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -33,10 +34,17 @@ public class ClientEntryPoint {
             System.out.println("Enter your name");
             dataOutputStream.writeUTF(scanner.nextLine());
 
+
+            DataInputStream dataInputStream = new DataInputStream(clientSocket.getInputStream());
+            new MessageListenerThread(dataInputStream).start();
+
+
             System.out.println("Print your messages");
             while ((line = scanner.nextLine()) != null) {
                 dataOutputStream.writeUTF(line);
             }
+
+
 
         } catch (UnknownHostException e) {
             e.printStackTrace();

@@ -5,6 +5,8 @@ import org.apache.log4j.Logger;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by ivan on 6/20/17.
@@ -12,6 +14,8 @@ import java.net.Socket;
 public class ServerEntryPoint {
 
     private final static Logger logger = Logger.getLogger(ServerEntryPoint.class);
+
+    static Map<String, Socket> clientsMap = new HashMap<String, Socket>();
 
     public static void main(String[] args) {
 
@@ -22,9 +26,11 @@ public class ServerEntryPoint {
             while (true) {
                 logger.info("Waiting for new client...");
                 Socket socket = serverSocket.accept();
-
                 logger.debug("Client socket joined, starting new thread");
-                new ClientSocketThread(socket).start();
+
+                ClientSocketThread clientSocketThread = new ClientSocketThread(socket, clientsMap);
+                clientSocketThread.start();
+
             }
 
         } catch (IOException e) {
