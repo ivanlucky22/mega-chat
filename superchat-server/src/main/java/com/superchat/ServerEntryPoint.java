@@ -28,15 +28,15 @@ public class ServerEntryPoint {
                 Socket socket = serverSocket.accept();
                 logger.debug("Client socket joined, starting new thread");
 
+
+
                 ClientSocketThread clientSocketThread = new ClientSocketThread(socket, clientsMap);
                 clientSocketThread.start();
 
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 }

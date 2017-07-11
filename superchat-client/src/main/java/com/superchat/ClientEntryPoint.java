@@ -31,18 +31,36 @@ public class ClientEntryPoint {
             Scanner scanner = new Scanner(System.in);
             String line;
 
-            System.out.println("Enter your name");
+            System.out.println("Please write 'join' for connection server");
+            dataOutputStream.writeUTF(scanner.nextLine());
+            System.out.println("Please write your login");
             dataOutputStream.writeUTF(scanner.nextLine());
 
 
-            DataInputStream dataInputStream = new DataInputStream(clientSocket.getInputStream());
-            new MessageListenerThread(dataInputStream).start();
+            while (true){
+
+                System.out.println("Do you wanna private or public message?");
+                String message = scanner.nextLine();
+                dataOutputStream.writeUTF(message);
+
+                if (message.equalsIgnoreCase("private")) {
+                    System.out.println("Who's your friend?");
+                    dataOutputStream.writeUTF(scanner.nextLine());
+                } else if (message.equalsIgnoreCase("public")) {
+
+                }
+
+                DataInputStream dataInputStream = new DataInputStream(clientSocket.getInputStream());
+                new MessageListenerThread(dataInputStream).start();
 
 
-            System.out.println("Print your messages");
-            while ((line = scanner.nextLine()) != null) {
-                dataOutputStream.writeUTF(line);
+                System.out.println("Print your messages");
+                while ((line = scanner.nextLine()) != null) {
+                    dataOutputStream.writeUTF(line);
+                    break;
+                }
             }
+
 
 
 
@@ -51,8 +69,7 @@ public class ClientEntryPoint {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
+
 
 }
