@@ -42,6 +42,7 @@ public class ClientSocketThread extends Thread {
                     case "public": writePublicMessage(dataInputStream);break;
                     default:
                         logger.warn("Command not recognize");
+                        throw new IllegalArgumentException("Command not recognize");
                 }
             }
         } catch (IOException e) {
@@ -86,7 +87,7 @@ public class ClientSocketThread extends Thread {
 
         Socket friendSocket = clientsMap.get(friend);
         if (friendSocket != null) {
-            new DataOutputStream(friendSocket.getOutputStream()).writeUTF(login + " is wrote...\n" + message);
+            new DataOutputStream(friendSocket.getOutputStream()).writeUTF(login + " send message:\n" + message);
         } else {
             logger.info(friend + " hasn't been found");
         }

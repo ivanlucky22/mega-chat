@@ -1,4 +1,4 @@
-package com.superchat;
+package com.superchat.Thread;
 
 import java.io.DataInputStream;
 import java.io.IOException;
