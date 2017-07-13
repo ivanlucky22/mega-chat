@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.superchat.controller.LoginController">
+   <children>
+      <Button fx:id="btnEnter" layoutX="255.0" layoutY="218.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="91.0" text="Enter" onAction="#onAction">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <TextField fx:id="loginField" alignment="CENTER" layoutX="217.0" layoutY="148.0" promptText="write your login" />
+   </children>
+</AnchorPane>

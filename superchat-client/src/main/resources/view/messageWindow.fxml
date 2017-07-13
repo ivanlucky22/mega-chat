@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.MessageWindowController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.superchat.controller.MessageWindowController">
+   <children>
+      <TextArea fx:id="history" layoutX="17.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="180.0" prefWidth="567.0" promptText="History">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </TextArea>
+      <TextField fx:id="messageView" alignment="TOP_LEFT" layoutX="17.0" layoutY="207.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="120.0" prefWidth="567.0" promptText="message" />
+      <Button fx:id="btnSend" layoutX="475.0" layoutY="343.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="111.0" text="Send" onAction="#onClick">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+   </children>
 </AnchorPane>

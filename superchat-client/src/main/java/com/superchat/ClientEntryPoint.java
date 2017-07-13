@@ -25,9 +25,14 @@ import java.util.Scanner;
 public class ClientEntryPoint extends Application{
 
 
-    public static final String HOST = "127.0.0.1";
-    public static final int PORT = 6081;
+    private static final String HOST = "127.0.0.1";
+    private static final int PORT = 6081;
+    private static Scanner scanner;
     private static DataOutputStream dataOutputStream;
+
+    public static DataOutputStream getDataOutputStream() {
+        return dataOutputStream;
+    }
 
     public static void main(String[] args) {
 
@@ -38,17 +43,15 @@ public class ClientEntryPoint extends Application{
             Socket clientSocket = new Socket(inetAdres, PORT);
 
             OutputStream outputStream = clientSocket.getOutputStream();
-            DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+            dataOutputStream = new DataOutputStream(outputStream);
 
-            Scanner scanner = new Scanner(System.in);
+            scanner = new Scanner(System.in);
             String line;
 
-            System.out.println("Please write 'join' for connection server");
+            System.out.println("Please write 'pressJoin' for connection server");
             writeJoin(dataOutputStream);
 
-            System.out.println("Please write your login");
-            dataOutputStream.writeUTF(scanner.nextLine());
-
+            System.out.println("Write your login");
 
             System.out.println("Do you wanna private or public message?");
             String messageChoice = scanner.nextLine();
@@ -86,9 +89,13 @@ public class ClientEntryPoint extends Application{
         }
     }
 
+    public static void writeLogin(DataOutputStream dataOutputStream, String text) throws IOException {
+        System.out.println("Please write your login");
+        dataOutputStream.writeUTF(text);
+    }
+
     private static void writeJoin(DataOutputStream dataOutputStream) throws IOException {
-        ClientEntryPoint.dataOutputStream = dataOutputStream;
-        dataOutputStream.writeUTF("join");
+        dataOutputStream.writeUTF("pressJoin");
     }
 
 
@@ -102,18 +109,23 @@ public class ClientEntryPoint extends Application{
     }
 
 
-    public void join(ActionEvent actionEvent) {
+
+    public void pressJoin(ActionEvent actionEvent) {
         try {
             writeJoin(dataOutputStream);
-            Parent secondWindow = FXMLLoader.load(getClass().getResource("/view/messageWindow.fxml"));
-            Scene secondScene = new Scene(secondWindow);
-            Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            appStage.hide();
-            appStage.setScene(secondScene);
-            appStage.show();
+            changeStage(actionEvent);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+
+    private void changeStage(ActionEvent actionEvent) throws IOException {
+        Parent secondWindow = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
+        Scene secondScene = new Scene(secondWindow);
+        Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        appStage.hide();
+        appStage.setScene(secondScene);
+        appStage.show();
     }
 }

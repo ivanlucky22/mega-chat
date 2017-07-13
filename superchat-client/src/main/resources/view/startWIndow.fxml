@@ -14,7 +14,7 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="joinButton" layoutX="217.0" layoutY="171.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="138.0" text="Join" onAction="#join">
+      <Button fx:id="joinButton" layoutX="217.0" layoutY="171.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="138.0" text="Join" onAction="#pressJoin">
          <font>
             <Font size="24.0" />
          </font>
