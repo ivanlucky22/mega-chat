@@ -1,13 +1,15 @@
 package com.superchat;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
 /**
- * Created by adm on 16.07.2017.
+ * Created by adm on 15.07.2017.
  */
-public class GUIClientEntryPoint extends Application
+public class GUIServerEntryPoint  extends Application
 
 {
 
@@ -23,13 +25,14 @@ public class GUIClientEntryPoint extends Application
         FXMLLoader fxmlLoader = new FXMLLoader();
 
 
-        fxmlLoader.setLocation(this.getClass().getClassLoader().getResource("fxml/clientChat.fxml"));
+        fxmlLoader.setLocation(this.getClass().getClassLoader().getResource("fxml/serverChat.fxml"));
 
-        Pane clientPane = (Pane) fxmlLoader.load();
-        Scene scene = new Scene(clientPane);
+
+        Pane pane = (Pane) fxmlLoader.load();
+        Scene scene = new Scene(pane);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
-        primaryStage.setTitle("Chat Client");
+        primaryStage.setTitle("Client Chat");
         primaryStage.show();
     }
 }
