@@ -16,21 +16,16 @@ import java.util.Map;
 /**
  * Created by ivan on 6/20/17.
  */
-public class ServerEntryPoint extends Application{
+public class ServerEntryPoint extends Application {
 
     private final static Logger logger = Logger.getLogger(ServerEntryPoint.class);
 
-    static Map<String, Socket> clientsMap;
-    private static ServerSocket serverSocket;
+    static Map<String, Socket> clientsMap = new HashMap<String, Socket>();
 
-    static {
-        try {
-            serverSocket = new ServerSocket(6081);
-            clientsMap = new HashMap<String, Socket>();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
+
+
+
 
     public static void main(String[] args) {
 
@@ -38,26 +33,30 @@ public class ServerEntryPoint extends Application{
 
     }
 
-    public static void stopServer() throws IOException {
-        logger.info("Server is stopped");
-        if(!serverSocket.isClosed()){
-            serverSocket.close();
-        }
 
-    }
 
     public static void startServer() throws IOException {
 
 
+        ServerSocket serverSocket = new ServerSocket(6081);
+
         while (true) {
             logger.info("Waiting for new client...");
-           Socket socket =serverSocket.accept();
+            Socket socket = serverSocket.accept();
             logger.debug("Client socket joined, starting new thread");
             ClientSocketThread clientSocketThread = new ClientSocketThread(socket, clientsMap);
             clientSocketThread.start();
+
+            if(stopServer()){
+                serverSocket.close();
+                socket.close();
+            }
         }
     }
 
+    public static boolean stopServer() {
+        return true;
+    }
 
 
     @Override

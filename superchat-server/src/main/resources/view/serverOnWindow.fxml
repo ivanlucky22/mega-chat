@@ -7,7 +7,8 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.superchat.Controller.ServerOnWindow">
    <children>
-      <Label alignment="CENTER" layoutX="31.0" layoutY="38.0" prefHeight="59.0" prefWidth="538.0" text="Welcome to our server">
+      <Label alignment="CENTER" layoutX="31.0" layoutY="38.0" prefHeight="59.0" prefWidth="538.0" text="Welcome to our server"
+      fx:id="label">
          <font>
             <Font name="Lato Regular" size="26.0" />
          </font>
