@@ -1,0 +1,8 @@
+
+.idea/.name
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/workspace.xml
+superchat-client/target/
+superchat-server/target/
+DB/

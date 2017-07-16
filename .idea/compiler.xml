@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="superchat-client" />
+        <module name="superchat-common" />
+        <module name="superchat-server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="super-chat" target="1.8" />
+      <module name="superchat-client" target="1.8" />
+      <module name="superchat-common" target="1.8" />
+      <module name="superchat-server" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

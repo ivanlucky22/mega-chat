@@ -16,8 +16,10 @@ public class ClientSocketThread extends Thread {
 
     private final static Logger logger = Logger.getLogger(ClientSocketThread.class);
 
+
     private Socket socket;
     private Map<String, Socket> clientsMap;
+    private String login;
 
     public ClientSocketThread(final Socket socket, final Map<String, Socket> clientsMap) {
         this.socket = socket;
@@ -27,39 +29,68 @@ public class ClientSocketThread extends Thread {
     @Override
     public void run() {
         try {
+
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-            String login = dataInputStream.readUTF();
 
-            for (Socket clientSocket : clientsMap.values()) {
-                new DataOutputStream(clientSocket.getOutputStream()).writeUTF(login + " has just joined.");
-            }
-
-
-            clientsMap.put(login, socket);
-
-            logger.info("User " + login + " has joined.");
 
             while (true) {
-                String message = dataInputStream.readUTF();
-                logger.info(login + " wrote: " + message);
+                final String message = dataInputStream.readUTF();
+                switch (message) {
 
-                for (Map.Entry<String, Socket> clientEntry : clientsMap.entrySet()) {
-                    String everyLogin = clientEntry.getKey();
-                    Socket clientSocketThread = clientEntry.getValue();
-
-                    OutputStream outputStream = clientSocketThread.getOutputStream();
-                    DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
-                    dataOutputStream.writeUTF(login + " wrote: " + message);
+                    case "join": clientJoin(dataInputStream);break;
+                    case "private": writePrivateMessage(dataInputStream);break;
+                    case "public": writePublicMessage(dataInputStream);break;
+                    default:
+                        logger.warn("Command not recognize");
+                        throw new IllegalArgumentException("Command not recognize");
                 }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
-    public Socket getSocket() {
-        return socket;
+    private void writePublicMessage(DataInputStream dataInputStream) throws IOException {
+
+
+
+
+        String message = dataInputStream.readUTF();
+        logger.info(login + " wrote: " + message);
+
+
+        for (Map.Entry<String, Socket> clientEntry : clientsMap.entrySet()) {
+            Socket clientSocketThread = clientEntry.getValue();
+
+
+            OutputStream outputStream = clientSocketThread.getOutputStream();
+            DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+
+            dataOutputStream.writeUTF(login + " wrote: " + message);
+        }
     }
+
+    private void clientJoin(DataInputStream dataInputStream) throws IOException {
+        login = dataInputStream.readUTF();
+        clientsMap.put(login, this.socket);
+
+        logger.info("User " + login + " has joined.");
+    }
+
+    private void writePrivateMessage(DataInputStream dataInputStream) throws IOException {
+
+
+        String friend = dataInputStream.readUTF();
+
+        String message = dataInputStream.readUTF();
+
+
+        Socket friendSocket = clientsMap.get(friend);
+        if (friendSocket != null) {
+            new DataOutputStream(friendSocket.getOutputStream()).writeUTF(login + " send message:\n" + message);
+        } else {
+            logger.info(friend + " hasn't been found");
+        }
+    }
+
 }
