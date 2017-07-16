@@ -3,7 +3,6 @@ package com.superchat;
 import com.superchat.Thread.MessageListenerThread;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -22,33 +21,40 @@ import java.util.Scanner;
 /**
  * Created by ivan on 6/20/17.
  */
-public class ClientEntryPoint extends Application{
+public class ClientEntryPoint extends Application {
 
 
     private static final String HOST = "127.0.0.1";
     private static final int PORT = 6081;
     private static Scanner scanner;
     private static DataOutputStream dataOutputStream;
+    private static OutputStream outputStream;
+    private static Socket clientSocket;
+    private static InetAddress inetAdres;
 
-    public static DataOutputStream getDataOutputStream() {
-        return dataOutputStream;
+    static {
+        try {
+            inetAdres = InetAddress.getByName(HOST);
+            clientSocket = new Socket(inetAdres, PORT);
+            outputStream = clientSocket.getOutputStream();
+            dataOutputStream = new DataOutputStream(outputStream);
+            scanner = new Scanner(System.in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
+
 
     public static void main(String[] args) {
 
         launch(args);
 
         try {
-            InetAddress inetAdres = InetAddress.getByName(HOST);
-            Socket clientSocket = new Socket(inetAdres, PORT);
 
-            OutputStream outputStream = clientSocket.getOutputStream();
-            dataOutputStream = new DataOutputStream(outputStream);
-
-            scanner = new Scanner(System.in);
             String line;
 
-            System.out.println("Please write 'pressJoin' for connection server");
+            System.out.println("Please write 'join' for connection server");
             writeJoin(dataOutputStream);
 
             System.out.println("Write your login");
@@ -95,7 +101,7 @@ public class ClientEntryPoint extends Application{
     }
 
     private static void writeJoin(DataOutputStream dataOutputStream) throws IOException {
-        dataOutputStream.writeUTF("pressJoin");
+        dataOutputStream.writeUTF("join");
     }
 
 
@@ -107,7 +113,6 @@ public class ClientEntryPoint extends Application{
         stage.setScene(new Scene(root));
         stage.show();
     }
-
 
 
     public void pressJoin(ActionEvent actionEvent) {
@@ -128,4 +133,9 @@ public class ClientEntryPoint extends Application{
         appStage.setScene(secondScene);
         appStage.show();
     }
+
+    public static DataOutputStream getDataOutputStream() {
+        return dataOutputStream;
+    }
+
 }
