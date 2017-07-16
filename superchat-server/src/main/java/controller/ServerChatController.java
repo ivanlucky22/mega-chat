@@ -20,6 +20,9 @@ public class ServerChatController {
 
     }
 
+
+
+
     public void chatLog(ActionEvent actionEvent) {
 
     }
