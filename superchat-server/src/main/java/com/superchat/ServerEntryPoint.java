@@ -23,16 +23,11 @@ public class ServerEntryPoint extends Application {
     static Map<String, Socket> clientsMap = new HashMap<String, Socket>();
 
 
-
-
-
-
     public static void main(String[] args) {
 
         launch(args);
 
     }
-
 
 
     public static void startServer() throws IOException {
@@ -47,7 +42,7 @@ public class ServerEntryPoint extends Application {
             ClientSocketThread clientSocketThread = new ClientSocketThread(socket, clientsMap);
             clientSocketThread.start();
 
-            if(stopServer()){
+            if (stopServer()) {
                 serverSocket.close();
                 socket.close();
             }
@@ -61,11 +56,12 @@ public class ServerEntryPoint extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/serverOnWindow.fxml"));
-        Parent root = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+//
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/serverGUI.fxml"));
+//        Parent root = (Parent) fxmlLoader.load();
+//        Stage stage = new Stage();
+//        stage.setScene(new Scene(root));
+//        stage.show();
+//    }
     }
 }
