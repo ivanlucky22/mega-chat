@@ -1,5 +1,14 @@
 package com.superchat;
 
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -18,8 +27,8 @@ public class ClientEntryPoint{
     private static final String HOST = "127.0.0.1";
     private static final int PORT = 6081;
 
-
     public static void main(String[] args) {
+
 
         try {
             InetAddress inetAdres = InetAddress.getByName(HOST);
@@ -34,7 +43,7 @@ public class ClientEntryPoint{
             System.out.println("Please write 'join' for connection server");
             dataOutputStream.writeUTF(scanner.nextLine());
 
-            System.out.println("Please write your login");
+            System.out.println("Write your login");
             dataOutputStream.writeUTF(scanner.nextLine());
 
             System.out.println("Do you wanna private or public message?");
@@ -45,7 +54,7 @@ public class ClientEntryPoint{
                 System.out.println("Who's your friend?");
                 dataOutputStream.writeUTF(scanner.nextLine());
             } else if (messageChoice.equalsIgnoreCase("public")) {
-                System.out.println();
+
             }
 
             DataInputStream dataInputStream = new DataInputStream(clientSocket.getInputStream());
@@ -72,4 +81,10 @@ public class ClientEntryPoint{
             e.printStackTrace();
         }
     }
-}
+
+
+
+    }
+
+
+
