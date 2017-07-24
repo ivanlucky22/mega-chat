@@ -11,7 +11,12 @@ import javafx.stage.Stage;
  */
 public class GUIclientEntryPoint extends Application
 
+
+
 {
+
+
+
 
 
     public static void main(String[] args) {
