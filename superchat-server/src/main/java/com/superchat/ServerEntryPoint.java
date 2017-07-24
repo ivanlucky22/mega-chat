@@ -16,18 +16,13 @@ import java.util.Map;
 /**
  * Created by ivan on 6/20/17.
  */
-public class ServerEntryPoint extends Application {
+public class ServerEntryPoint  {
 
     private final static Logger logger = Logger.getLogger(ServerEntryPoint.class);
 
     static Map<String, Socket> clientsMap = new HashMap<String, Socket>();
 
 
-    public static void main(String[] args) {
-
-        launch(args);
-
-    }
 
 
     public static void startServer() throws IOException {
@@ -54,14 +49,5 @@ public class ServerEntryPoint extends Application {
     }
 
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-//
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/serverGUI.fxml"));
-//        Parent root = (Parent) fxmlLoader.load();
-//        Stage stage = new Stage();
-//        stage.setScene(new Scene(root));
-//        stage.show();
-//    }
     }
-}
+
