@@ -37,14 +37,15 @@ public class ServerChatController {
 
     public void disconnectServerButton(ActionEvent actionEvent) {
 
+
         if (serverThread.isAlive()) {
             serverThread.stop();
+            ServerManager.stopServer();
             Alert dialog = new Alert(Alert.AlertType.INFORMATION);
             dialog.initStyle(StageStyle.UTILITY);
             dialog.setTitle("INFO");
             dialog.setHeaderText("Server stoped!");
             dialog.showAndWait();
-
         }
     }
 

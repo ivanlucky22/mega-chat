@@ -19,10 +19,6 @@ public class ServerManager implements Runnable{
     private static boolean aBoolean = true;
 
 
-    public static Logger getLogger() {
-        return logger;
-    }
-
     public static void startServer() throws IOException {
 
 
