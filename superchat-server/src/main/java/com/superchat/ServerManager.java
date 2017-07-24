@@ -2,6 +2,7 @@ package com.superchat;
 
 import org.apache.log4j.Logger;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -11,7 +12,7 @@ import java.util.Map;
 /**
  * Created by ivan on 6/20/17.
  */
-public class ServerManager implements Runnable{
+public class ServerManager implements Runnable {
 
     private final static Logger logger = Logger.getLogger(ServerManager.class);
 
@@ -31,6 +32,7 @@ public class ServerManager implements Runnable{
             logger.debug("Client socket joined, starting new thread");
             ClientSocketThread clientSocketThread = new ClientSocketThread(socket, clientsMap);
             clientSocketThread.start();
+
 
             if (stopServer()) {
                 serverSocket.close();
