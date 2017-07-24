@@ -3,7 +3,9 @@ package controller;
 import com.superchat.ServerManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -13,23 +15,37 @@ import java.io.IOException;
 public class ServerChatController {
 
 
-    ServerManager serverManager = new ServerManager();
-    Thread serverThread = new Thread(serverManager);
+    Thread serverThread = new Thread(new ServerManager());
 
 
     @FXML
     TextField chatLog;
 
     public void connectServerButton(ActionEvent actionEvent) {
-        try {
-            ServerManager.startServer();
-        } catch (IOException e) {
-            e.printStackTrace();
+
+
+        if (!serverThread.isAlive()) {
+            serverThread.start();
+            Alert dialog = new Alert(Alert.AlertType.INFORMATION);
+            dialog.initStyle(StageStyle.UTILITY);
+            dialog.setTitle("INFO");
+            dialog.setHeaderText("Server is running!");
+            dialog.showAndWait();
         }
+
     }
 
     public void disconnectServerButton(ActionEvent actionEvent) {
-        ServerManager.stopServer();
+
+        if (serverThread.isAlive()) {
+            serverThread.stop();
+            Alert dialog = new Alert(Alert.AlertType.INFORMATION);
+            dialog.initStyle(StageStyle.UTILITY);
+            dialog.setTitle("INFO");
+            dialog.setHeaderText("Server stoped!");
+            dialog.showAndWait();
+
+        }
     }
 
     public void chatLog(ActionEvent actionEvent) {
