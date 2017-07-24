@@ -25,7 +25,7 @@ public class GUIserverEntryPoint extends Application
         FXMLLoader fxmlLoader = new FXMLLoader();
 
 
-        fxmlLoader.setLocation(this.getClass().getClassLoader().getResource("fxml/serverChat.fxml"));
+        fxmlLoader.setLocation(this.getClass().getClassLoader().getResource("fxml/serverGUI.fxml"));
 
 
         Pane pane2 = (Pane) fxmlLoader.load();
