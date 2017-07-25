@@ -21,6 +21,10 @@ public class ClientSocketThread extends Thread {
     private Map<String, Socket> clientsMap;
     private String login;
 
+    public String getLogin() {
+        return login;
+    }
+
     public ClientSocketThread(final Socket socket, final Map<String, Socket> clientsMap) {
         this.socket = socket;
         this.clientsMap = clientsMap;
@@ -77,12 +81,13 @@ public class ClientSocketThread extends Thread {
         logger.info("User " + login + " has joined.");
     }
 
-    private void writePrivateMessage(DataInputStream dataInputStream) throws IOException {
+    protected void writePrivateMessage(DataInputStream dataInputStream) throws IOException {
 
 
         String friend = dataInputStream.readUTF();
 
         String message = dataInputStream.readUTF();
+
 
 
         Socket friendSocket = clientsMap.get(friend);

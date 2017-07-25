@@ -1,12 +1,6 @@
-
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ServerChatController">
     <children>
@@ -14,14 +8,13 @@
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="104.0" prefWidth="98.0">
                     <children>
-                        <Button fx:id="startServerBatton" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#startServerBatton" prefHeight="25.0" prefWidth="116.0" text="Start" />
-                        <Button fx:id="connectServerBatton" layoutX="16.0" layoutY="41.0" mnemonicParsing="false" onAction="#connectServerBatton" prefHeight="25.0" prefWidth="117.0" text="Connect" />
-                        <Button fx:id="disconnectServerBatton" layoutX="16.0" layoutY="68.0" mnemonicParsing="false" onAction="#disconnectServerBatton" prefHeight="25.0" prefWidth="118.0" text="Disconnect" />
+                        <Button fx:id="connectServerBatton" layoutX="16.0" layoutY="41.0" mnemonicParsing="false" onAction="#connectServerButton" prefHeight="25.0" prefWidth="117.0" text="Connect" />
+                        <Button fx:id="disconnectServerBatton" layoutX="16.0" layoutY="68.0" mnemonicParsing="false" onAction="#disconnectServerButton" prefHeight="25.0" prefWidth="118.0" text="Disconnect" />
                     </children>
                 </AnchorPane>
             </content>
         </TitledPane>
-        <TitledPane animated="false" collapsible="false" layoutX="20.0" layoutY="14.0" prefHeight="25.0" prefWidth="401.0" text="Chat Log" />
+        <TitledPane  animated="false" collapsible="false" layoutX="20.0" layoutY="14.0" prefHeight="25.0" prefWidth="401.0" text="Chat Log" />
         <TitledPane animated="false" collapsible="false" layoutX="429.0" layoutY="13.0" prefHeight="25.0" prefWidth="146.0" text="Users" />
         <Label layoutX="20.0" layoutY="319.0" prefHeight="23.0" prefWidth="67.0" text="Port:" />
         <Label layoutX="20.0" layoutY="365.0" text="Host:" />
