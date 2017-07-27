@@ -4,6 +4,7 @@ import com.superchat.ServerManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.StageStyle;
 
@@ -14,15 +15,14 @@ import java.io.IOException;
  */
 public class ServerChatController {
 
-
-    Thread serverThread = new Thread(new ServerManager());
-
+    ServerManager serverManager = new ServerManager();
+    Thread serverThread = new Thread(serverManager);
 
     @FXML
     TextField chatLog;
 
-    public void connectServerButton(ActionEvent actionEvent) {
 
+    public void connectServerButton(ActionEvent actionEvent) {
 
         if (!serverThread.isAlive()) {
             serverThread.start();
@@ -39,8 +39,7 @@ public class ServerChatController {
 
 
         if (serverThread.isAlive()) {
-            serverThread.stop();
-            ServerManager.stopServer();
+            serverManager.stopServer();
             Alert dialog = new Alert(Alert.AlertType.INFORMATION);
             dialog.initStyle(StageStyle.UTILITY);
             dialog.setTitle("INFO");

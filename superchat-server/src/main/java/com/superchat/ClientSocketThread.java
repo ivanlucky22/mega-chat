@@ -41,9 +41,15 @@ public class ClientSocketThread extends Thread {
                 final String message = dataInputStream.readUTF();
                 switch (message) {
 
-                    case "join": clientJoin(dataInputStream);break;
-                    case "private": writePrivateMessage(dataInputStream);break;
-                    case "public": writePublicMessage(dataInputStream);break;
+                    case "join":
+                        clientJoin(dataInputStream);
+                        break;
+                    case "private":
+                        writePrivateMessage(dataInputStream);
+                        break;
+                    case "public":
+                        writePublicMessage(dataInputStream);
+                        break;
                     default:
                         logger.warn("Command not recognize");
                         throw new IllegalArgumentException("Command not recognize");
@@ -55,8 +61,6 @@ public class ClientSocketThread extends Thread {
     }
 
     private void writePublicMessage(DataInputStream dataInputStream) throws IOException {
-
-
 
 
         String message = dataInputStream.readUTF();
@@ -82,17 +86,14 @@ public class ClientSocketThread extends Thread {
     }
 
     protected void writePrivateMessage(DataInputStream dataInputStream) throws IOException {
-
-
         String friend = dataInputStream.readUTF();
-
         String message = dataInputStream.readUTF();
-
-
 
         Socket friendSocket = clientsMap.get(friend);
         if (friendSocket != null) {
-            new DataOutputStream(friendSocket.getOutputStream()).writeUTF(login + " send message:\n" + message);
+            String fullMessage = login + " send message:\n" + message;
+            logger.info(fullMessage);
+            new DataOutputStream(friendSocket.getOutputStream()).writeUTF(fullMessage);
         } else {
             logger.info(friend + " hasn't been found");
         }
