@@ -1,5 +1,6 @@
 package com.superchat;
 
+import controller.ServerChatController;
 import org.apache.log4j.Logger;
 
 import java.io.DataOutputStream;
@@ -20,12 +21,13 @@ public class ServerManager implements Runnable {
     static Map<String, Socket> clientsMap = new HashMap<String, Socket>();
     private static boolean aBoolean = true;
     private static ServerSocket serverSocket;
+    ServerChatController serverChatController;
+
+    public  void startServer() throws IOException {
 
 
-    public static void startServer() throws IOException {
-
-
-        serverSocket = new ServerSocket(6081);
+        serverChatController= new ServerChatController();
+        serverSocket = new ServerSocket(serverChatController.getPort());
 
         aBoolean = true;
         while (aBoolean) {

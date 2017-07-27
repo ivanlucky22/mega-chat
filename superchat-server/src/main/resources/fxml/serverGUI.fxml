@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -14,13 +16,13 @@
                 </AnchorPane>
             </content>
         </TitledPane>
-        <TitledPane  animated="false" collapsible="false" layoutX="20.0" layoutY="14.0" prefHeight="25.0" prefWidth="401.0" text="Chat Log" />
+        <TitledPane animated="false" collapsible="false" layoutX="20.0" layoutY="14.0" prefHeight="25.0" prefWidth="401.0" text="Chat Log" />
         <TitledPane animated="false" collapsible="false" layoutX="429.0" layoutY="13.0" prefHeight="25.0" prefWidth="146.0" text="Users" />
         <Label layoutX="20.0" layoutY="319.0" prefHeight="23.0" prefWidth="67.0" text="Port:" />
         <Label layoutX="20.0" layoutY="365.0" text="Host:" />
-        <TextField layoutX="65.0" layoutY="318.0" prefHeight="25.0" prefWidth="165.0" />
+        <TextField fx:id="portConnect" layoutX="65.0" layoutY="318.0" prefHeight="25.0" prefWidth="165.0" />
         <TextField layoutX="65.0" layoutY="361.0" prefHeight="25.0" prefWidth="165.0" />
-        <TextField fx:id="chatLog" layoutX="20.0" layoutY="39.0" onAction="#chatLog" prefHeight="271.0" prefWidth="401.0" />
+        <TextField fx:id="chatLog" layoutX="20.0" layoutY="39.0" prefHeight="271.0" prefWidth="401.0" />
         <TableView layoutX="429.0" layoutY="38.0" prefHeight="212.0" prefWidth="146.0">
             <columns>
                 <TableColumn prefWidth="75.0" text="Users" />

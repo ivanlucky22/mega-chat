@@ -21,10 +21,6 @@ public class ClientSocketThread extends Thread {
     private Map<String, Socket> clientsMap;
     private String login;
 
-    public String getLogin() {
-        return login;
-    }
-
     public ClientSocketThread(final Socket socket, final Map<String, Socket> clientsMap) {
         this.socket = socket;
         this.clientsMap = clientsMap;
@@ -69,7 +65,6 @@ public class ClientSocketThread extends Thread {
 
         for (Map.Entry<String, Socket> clientEntry : clientsMap.entrySet()) {
             Socket clientSocketThread = clientEntry.getValue();
-
 
             OutputStream outputStream = clientSocketThread.getOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
