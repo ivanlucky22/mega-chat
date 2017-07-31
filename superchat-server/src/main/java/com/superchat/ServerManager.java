@@ -27,7 +27,8 @@ public class ServerManager implements Runnable {
 
 
         serverChatController= new ServerChatController();
-        serverSocket = new ServerSocket(serverChatController.getPort());
+        int port = serverChatController.getPort();
+        serverSocket = new ServerSocket(port);
 
         aBoolean = true;
         while (aBoolean) {
