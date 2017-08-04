@@ -1,11 +1,12 @@
-package controller;
+package com.superchat.controller;
 
 import com.superchat.ServerManager;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.StageStyle;
 
@@ -19,31 +20,32 @@ public class ServerChatController{
     Thread serverThread = new Thread(serverManager);
 
 
+
+    @FXML
+    public TableView tableviewUser;
+
     @FXML
     TextField chatLog;
 
 
     @FXML
-    TextField  portConnect = new TextField();
+    TextField  portConnect;
+
+    public void initialize(){
+        ObservableList columns = tableviewUser.getColumns();
 
 
-    @FXML
-    private void initialize(){
-        portConnect.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    portConnect.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
     }
+
+
+
 
     public void connectServerButton(ActionEvent actionEvent) {
 
 
+
         if (!serverThread.isAlive()) {
-            getPort();
+            serverManager.setPort(stringToInt(portConnect.getText()));
             serverThread.start();
             Alert dialog = new Alert(Alert.AlertType.INFORMATION);
             dialog.initStyle(StageStyle.UTILITY);
@@ -67,12 +69,6 @@ public class ServerChatController{
         }
     }
 
-    public int getPort() {
-
-        String text = portConnect.getText();
-        int i = stringToInt(text);
-        return i;
-    }
 
 
     private int stringToInt(String inputString){

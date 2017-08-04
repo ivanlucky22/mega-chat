@@ -1,6 +1,5 @@
-package controller;
+package com.superchat.controller;
 
-import com.superchat.MessageListenerThread;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
