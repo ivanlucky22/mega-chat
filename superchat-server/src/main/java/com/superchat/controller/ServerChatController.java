@@ -2,11 +2,13 @@ package com.superchat.controller;
 
 import com.superchat.ServerManager;
 
+import com.superchat.TextAreaAppender;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.StageStyle;
 
@@ -22,23 +24,17 @@ public class ServerChatController{
 
 
     @FXML
-    public TableView tableviewUser;
+    public  TextArea textArea = new TextArea();
 
-    @FXML
-    TextField chatLog;
 
 
     @FXML
     TextField  portConnect;
 
-    public void initialize(){
-        ObservableList columns = tableviewUser.getColumns();
 
-
+    public ServerChatController() {
+        TextAreaAppender.setTextArea(textArea);
     }
-
-
-
 
     public void connectServerButton(ActionEvent actionEvent) {
 
@@ -53,7 +49,6 @@ public class ServerChatController{
             dialog.setHeaderText("Server is running!");
             dialog.showAndWait();
         }
-        chatLog.setText("Waiting for new client...");
     }
 
     public void disconnectServerButton(ActionEvent actionEvent) {

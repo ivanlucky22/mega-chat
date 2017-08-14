@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"fx:controller="com.superchat.controller.ServerChatController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.superchat.controller.ServerChatController">
     <children>
         <TitledPane animated="false" collapsible="false" layoutX="432.0" layoutY="256.0" prefHeight="130.0" prefWidth="146.0" text="Server Actions">
             <content>
@@ -20,11 +20,11 @@
         <TitledPane animated="false" collapsible="false" layoutX="429.0" layoutY="13.0" prefHeight="25.0" prefWidth="146.0" text="Users" />
         <Label layoutX="20.0" layoutY="319.0" prefHeight="23.0" prefWidth="67.0" text="Port:" />
         <TextField fx:id="portConnect" layoutX="65.0" layoutY="318.0" prefHeight="25.0" prefWidth="165.0" />
-        <TextField fx:id="chatLog" layoutX="20.0" layoutY="39.0" prefHeight="271.0" prefWidth="401.0" />
         <TableView fx:id="tableviewUser" layoutX="429.0" layoutY="38.0" prefHeight="212.0" prefWidth="146.0">
             <columns>
                 <TableColumn prefWidth="145.0" text="Users" />
             </columns>
         </TableView>
+      <TextArea fx:id="textArea" layoutX="20.0" layoutY="39.0" prefHeight="267.0" prefWidth="401.0" />
     </children>
 </AnchorPane>

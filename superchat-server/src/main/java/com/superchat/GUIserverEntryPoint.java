@@ -3,6 +3,7 @@ package com.superchat;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -22,13 +23,12 @@ public class GUIserverEntryPoint extends Application
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         FXMLLoader fxmlLoader = new FXMLLoader();
-
-
         fxmlLoader.setLocation(this.getClass().getClassLoader().getResource("fxml/serverGUI.fxml"));
 
 
-        Pane pane2 = (Pane) fxmlLoader.load();
+        Pane pane2 = (AnchorPane) fxmlLoader.load();
         Scene scene = new Scene(pane2);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
